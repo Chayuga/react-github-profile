@@ -1,14 +1,19 @@
 import { CssBaseline } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
 
+import useStyles from './styles';
+
 import { NavBar, PullRequests, Issues, Market, Explore, Overview, Repositories, Stars, Followers } from '.';
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
       <NavBar />
-      <main>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
         <Routes>
           <Route path="/" element={<PullRequests />} />
           <Route path="/issues" element={<Issues />} />
