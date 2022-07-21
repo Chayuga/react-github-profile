@@ -23,5 +23,11 @@ export default makeStyles((theme: Theme) => ({
   },
   searchGroup: {
     display: 'flex',
+    alignItems: 'center',
+  },
+
+  searchInput: {
+    display: 'flex',
+    marginLeft: '25px',
   },
 }));

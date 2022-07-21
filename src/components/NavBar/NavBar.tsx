@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
-import { Menu, AccountCircle, Brightness4, Brightness7, ArrowDropDown, Search } from '@mui/icons-material';
+import { Menu, AccountCircle, Brightness4, Brightness7, ArrowDropDown, Search, Notifications } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 
@@ -29,9 +29,16 @@ function NavBar() {
 
         {!isMobile
           && (
-          <div className={classes.searchGroup}>
-            <Search /> &nbsp; Search Github ....
-          </div>
+            <div className={classes.searchGroup}>
+              {isAuthenticated && (
+              <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+                {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+              </IconButton>
+              )}
+              <div className={classes.searchInput}>
+                <Search /> &nbsp; Search Github ....
+              </div>
+            </div>
           )}
         <div>
           {!isAuthenticated ? (
@@ -50,9 +57,26 @@ function NavBar() {
                 {!isMobile
               && (
               <>
+                <Notifications /> &nbsp; <ArrowDropDown />
+
+              </>
+
+              )}
+              </Button>
+              <Button
+                color="inherit"
+                component={Link}
+                to="/profile/:id"
+                className={classes.linkButton}
+                onClick={() => {}}
+              >
+                {!isMobile
+              && (
+              <>
                 <AccountCircle /> &nbsp; <ArrowDropDown />
 
               </>
+
               )}
 
                 {/* TODO: Move this avatar to profile section */}
@@ -62,9 +86,6 @@ function NavBar() {
                 src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
               /> */}
               </Button>
-              <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
-                {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
-              </IconButton>
             </>
           )}
         </div>
