@@ -1,6 +1,8 @@
 import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
+const drawerWidth = 240;
+
 export default makeStyles((theme: Theme) => ({
   toolbar: {
     height: '80px',
@@ -19,7 +21,10 @@ export default makeStyles((theme: Theme) => ({
     },
   },
   linkButton: {
-
+    '&:hover': {
+      color: 'green !important',
+      textDecoration: 'none',
+    },
   },
   searchGroup: {
     display: 'flex',
@@ -29,5 +34,14 @@ export default makeStyles((theme: Theme) => ({
   searchInput: {
     display: 'flex',
     marginLeft: '25px',
+  },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  drawerPaper: {
+    width: drawerWidth,
   },
 }));
