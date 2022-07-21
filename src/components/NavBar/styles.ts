@@ -33,7 +33,7 @@ export default makeStyles((theme: Theme) => ({
 
   searchInput: {
     display: 'flex',
-    marginLeft: '25px',
+    // marginLeft: '25px',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {

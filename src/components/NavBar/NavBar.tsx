@@ -19,31 +19,40 @@ function NavBar() {
     <>
       <AppBar position="fixed" style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}>
         <Toolbar className={classes.toolbar}>
-          {isMobile && (
-          <IconButton
-            color="inherit"
-            edge="start"
-            style={{ outline: 'none' }}
-            onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
-            className={classes.menuButton}
-          >
-            <Menu />
-          </IconButton>
-          )}
-
-          {!isMobile
-          && (
-            <div className={classes.searchGroup}>
-              {isAuthenticated && (
-              <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
-                {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+          {isMobile ? (
+            <>
+              <IconButton
+                color="inherit"
+                edge="start"
+                style={{ outline: 'none' }}
+                onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+                className={classes.menuButton}
+              >
+                <Menu />
               </IconButton>
-              )}
+
+              {isAuthenticated && (
               <div className={classes.searchInput}>
                 <Search /> &nbsp; Search Github ....
               </div>
+              )}
+            </>
+          ) : (
+            <div className={classes.searchGroup}>
+              {isAuthenticated && (
+                <>
+                  <IconButton color="inherit" sx={{ ml: 1, mr: 2 }} onClick={() => {}}>
+                    {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+                  </IconButton>
+
+                  <div className={classes.searchInput}>
+                    <Search /> &nbsp; Search Github ....
+                  </div>
+                </>
+              )}
             </div>
           )}
+
           <div>
             {!isAuthenticated ? (
               <Button color="inherit" onClick={() => {}}>
@@ -51,6 +60,7 @@ function NavBar() {
               </Button>
             ) : (
               <>
+                {!isMobile && (
                 <Button
                   color="inherit"
                   component={Link}
@@ -58,15 +68,11 @@ function NavBar() {
                   className={classes.linkButton}
                   onClick={() => {}}
                 >
-                  {!isMobile
-              && (
-              <>
-                <Notifications /> &nbsp; <ArrowDropDown />
 
-              </>
+                  <Notifications /> &nbsp; <ArrowDropDown />
 
-              )}
                 </Button>
+                )}
                 <Button
                   color="inherit"
                   component={Link}
@@ -74,26 +80,13 @@ function NavBar() {
                   className={classes.linkButton}
                   onClick={() => {}}
                 >
-                  {!isMobile
-              && (
-              <>
-                <AccountCircle /> &nbsp; <ArrowDropDown />
 
-              </>
+                  <AccountCircle /> &nbsp; <ArrowDropDown />
 
-              )}
-
-                  {/* TODO: Move this avatar to profile section */}
-                  {/* <Avatar
-                style={{ width: 150, height: 150 }}
-                alt="Profile"
-                src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
-              /> */}
                 </Button>
               </>
             )}
           </div>
-          {isMobile && 'Search Github ....'}
         </Toolbar>
       </AppBar>
       <div>
