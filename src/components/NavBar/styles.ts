@@ -22,7 +22,7 @@ export default makeStyles((theme: Theme) => ({
   },
   linkButton: {
     '&:hover': {
-      color: 'green !important',
+      color: 'green',
       textDecoration: 'none',
     },
   },
@@ -33,7 +33,6 @@ export default makeStyles((theme: Theme) => ({
 
   searchInput: {
     display: 'flex',
-    // marginLeft: '25px',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {

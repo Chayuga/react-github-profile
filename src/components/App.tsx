@@ -3,7 +3,17 @@ import { Route, Routes } from 'react-router-dom';
 
 import useStyles from './styles';
 
-import { NavBar, PullRequests, Issues, Market, Explore, Overview, Repositories, Stars, Followers } from '.';
+import {
+  NavBar,
+  PullRequests,
+  Issues,
+  Market,
+  Explore,
+  Overview,
+  Repositories,
+  Stars,
+  Followers,
+} from '.';
 
 function App() {
   const classes = useStyles();

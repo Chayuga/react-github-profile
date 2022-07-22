@@ -1,7 +1,8 @@
-import React from 'react';
 import { Avatar } from '@mui/material';
 
 import useStyles from './styles';
+
+import AvatarImage from '../assets/images/avatar.png';
 
 function Profile() {
   const classes = useStyles();
@@ -11,7 +12,7 @@ function Profile() {
       <Avatar
         style={{ width: 150, height: 150 }}
         alt="Profile"
-        src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
+        src={AvatarImage}
       />
     </div>
   );

@@ -1,4 +1,3 @@
-
 import { makeStyles } from '@mui/styles';
 
 export default makeStyles(() => ({
@@ -9,7 +8,7 @@ export default makeStyles(() => ({
   imageLink: {
     display: 'flex',
     justifyContent: 'center',
-    padding: '10% 0',
+    padding: '1.25rem 0',
   },
   image: {
     width: '70%',
@@ -21,9 +20,5 @@ export default makeStyles(() => ({
   links: {
     color: 'white',
     textDecoration: 'none',
-
-  },
-  mainImages: {
-
   },
 }));

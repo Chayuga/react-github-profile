@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
-import { AppBar, IconButton, Toolbar, Drawer, Button, useMediaQuery } from '@mui/material';
-import { Menu, AccountCircle, Brightness4, Brightness7, ArrowDropDown, Search, Notifications } from '@mui/icons-material';
+import {
+  AppBar,
+  IconButton,
+  Toolbar,
+  Drawer,
+  Button,
+  useMediaQuery,
+} from '@mui/material';
+import {
+  Menu,
+  AccountCircle,
+  Brightness4,
+  Brightness7,
+  ArrowDropDown,
+  Search,
+  Notifications,
+} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 
@@ -9,6 +24,7 @@ import { Sidebar } from '..';
 
 function NavBar() {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+  const [profileOpen, setProfileOpen] = useState<boolean>(true);
 
   const classes = makeStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -17,7 +33,10 @@ function NavBar() {
 
   return (
     <>
-      <AppBar position="fixed" style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}>
+      <AppBar
+        position="fixed"
+        style={{ background: 'transparent', boxShadow: 'none', color: 'black' }}
+      >
         <Toolbar className={classes.toolbar}>
           {isMobile ? (
             <>
@@ -32,21 +51,29 @@ function NavBar() {
               </IconButton>
 
               {isAuthenticated && (
-              <div className={classes.searchInput}>
-                <Search /> &nbsp; Search Github ....
-              </div>
+                <div className={classes.searchInput}>
+                  <Search /> &nbsp; Search Github...
+                </div>
               )}
             </>
           ) : (
             <div className={classes.searchGroup}>
               {isAuthenticated && (
                 <>
-                  <IconButton color="inherit" sx={{ ml: 1, mr: 2 }} onClick={() => {}}>
-                    {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+                  <IconButton
+                    color="inherit"
+                    sx={{ ml: 1, mr: 2 }}
+                    onClick={() => {}}
+                  >
+                    {theme.palette.mode === 'dark' ? (
+                      <Brightness7 />
+                    ) : (
+                      <Brightness4 />
+                    )}
                   </IconButton>
 
                   <div className={classes.searchInput}>
-                    <Search /> &nbsp; Search Github ....
+                    <Search /> &nbsp; Search Github...
                   </div>
                 </>
               )}
@@ -60,29 +87,27 @@ function NavBar() {
               </Button>
             ) : (
               <>
-                {!isMobile && (
                 <Button
                   color="inherit"
                   component={Link}
-                  to="/profile/:id"
+                  to="/notification"
                   className={classes.linkButton}
                   onClick={() => {}}
                 >
-
                   <Notifications /> &nbsp; <ArrowDropDown />
-
                 </Button>
-                )}
+                {/* TODO: This button will help in opening and closing off the Profile component */}
                 <Button
                   color="inherit"
-                  component={Link}
-                  to="/profile/:id"
                   className={classes.linkButton}
-                  onClick={() => {}}
+                  onClick={() => setProfileOpen((prevProfileOpen) => !prevProfileOpen)}
                 >
-
-                  <AccountCircle /> &nbsp; <ArrowDropDown />
-
+                  <AccountCircle /> &nbsp;{' '}
+                  {profileOpen ? (
+                    <h5 style={{ color: 'red' }}>Close</h5>
+                  ) : (
+                    <h5 style={{ color: 'green' }}>Open</h5>
+                  )}
                 </Button>
               </>
             )}
@@ -100,11 +125,15 @@ function NavBar() {
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
             >
-              <Sidebar setMobileOpen={setMobileOpen} />
+              <Sidebar />
             </Drawer>
           ) : (
-            <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
-              <Sidebar setMobileOpen={setMobileOpen} />
+            <Drawer
+              classes={{ paper: classes.drawerPaper }}
+              variant="permanent"
+              open
+            >
+              <Sidebar />
             </Drawer>
           )}
         </nav>
