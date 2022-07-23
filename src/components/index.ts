@@ -8,3 +8,6 @@ export { default as Repositories } from './Repositories/Repositories';
 export { default as Stars } from './Stars/Stars';
 export { default as Followers } from './Followers/Followers';
 export { default as Sidebar } from './Sidebar/Sidebar';
+export { default as SidebarMenu } from './SidebarMenu/SidebarMenu';
+export { default as Profile } from './Profile/Profile';
+export { default as MainScreen } from './MainScreen/MainScreen';

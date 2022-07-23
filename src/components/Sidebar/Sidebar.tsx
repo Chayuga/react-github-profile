@@ -1,69 +1,41 @@
-import React from 'react';
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  ListSubheader,
-} from '@mui/material';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Drawer,
+  useMediaQuery } from '@mui/material';
 
+import { SidebarMenu } from '..';
 import useStyles from './styles';
-
-import githubWhite from '../assets/logo/github_white.png';
-// import githubblack from '../assets/logo/github_black.png';
-
-const mainMenu = [
-  { label: 'Pull Request', value: 'pull-request' },
-  { label: 'Issues', value: 'issues' },
-  { label: 'Market', value: 'market' },
-  { label: 'Explore', value: 'explore' },
-];
-
-const otherMenu = [
-  { label: 'Overview', value: 'overview' },
-  { label: 'Repositories', value: 'Repositories' },
-  { label: 'Stars', value: 'Stars' },
-  { label: 'Followers', value: 'Followers' },
-];
 
 function Sidebar() {
   const classes = useStyles();
 
+  const isMobile = useMediaQuery('(max-width:600px)');
+
+  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+
   return (
-    <div className={classes.sideBar}>
-      <Link to="/" className={classes.imageLink}>
-        <img src={githubWhite} alt="GitHub Logo" className={classes.image} />
-      </Link>
-      <Divider />
-      <List>
-        <ListSubheader className={classes.subHeader}>MAIN</ListSubheader>
-        {mainMenu.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
-              <ListItemIcon>
-                <img src={githubWhite} height={30} alt={`${label} logo`} />
-              </ListItemIcon>
-              <ListItemText primary={label} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        <ListSubheader className={classes.subHeader}>OTHER</ListSubheader>
-        {otherMenu.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
-              <ListItemIcon>
-                <img src={githubWhite} height={30} alt={`${label} logo`} />
-              </ListItemIcon>
-              <ListItemText primary={label} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+    <div>
+      <nav className={classes.drawer}>
+        {isMobile ? (
+          <Drawer
+            variant="temporary"
+            anchor="right"
+            open={mobileOpen}
+            onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+            classes={{ paper: classes.drawerPaper }}
+            ModalProps={{ keepMounted: true }}
+          >
+            <SidebarMenu />
+          </Drawer>
+        ) : (
+          <Drawer
+            classes={{ paper: classes.drawerPaper }}
+            variant="permanent"
+            open
+          >
+            <SidebarMenu />
+          </Drawer>
+        )}
+      </nav>
     </div>
   );
 }

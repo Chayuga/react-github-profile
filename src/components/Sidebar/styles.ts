@@ -1,24 +1,16 @@
 import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles';
 
-export default makeStyles(() => ({
-  sideBar: {
-    height: '100vh',
-    backgroundColor: '#3440e3',
+const drawerWidth = 240;
+
+export default makeStyles((theme: Theme) => ({
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
   },
-  imageLink: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '1.25rem 0',
-  },
-  image: {
-    width: '70%',
-  },
-  subHeader: {
-    backgroundColor: '#3440e3 !important',
-    color: '#a5a6c2 !important',
-  },
-  links: {
-    color: 'white',
-    textDecoration: 'none',
+  drawerPaper: {
+    width: drawerWidth,
   },
 }));
