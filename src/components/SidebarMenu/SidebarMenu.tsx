@@ -40,7 +40,7 @@ function SidebarMenu() {
       <List>
         <ListSubheader className={classes.subHeader}>MAIN</ListSubheader>
         {mainMenu.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
+          <Link key={value} className={classes.links} to={value}>
             <ListItem onClick={() => {}} button>
               <ListItemIcon>
                 <img src={githubWhite} height={30} alt={`${label} logo`} />
@@ -54,7 +54,7 @@ function SidebarMenu() {
       <List>
         <ListSubheader className={classes.subHeader}>OTHER</ListSubheader>
         {otherMenu.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
+          <Link key={value} className={classes.links} to={value}>
             <ListItem onClick={() => {}} button>
               <ListItemIcon>
                 <img src={githubWhite} height={30} alt={`${label} logo`} />
