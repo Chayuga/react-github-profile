@@ -14,5 +14,4 @@ export default makeStyles(() => ({
   toolbar: {
     height: '70px',
   },
-
 }));
