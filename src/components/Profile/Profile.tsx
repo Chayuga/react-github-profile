@@ -14,6 +14,18 @@ function Profile() {
         alt="Profile"
         src={AvatarImage}
       />
+      <div>Rodgers Chayuga</div>
+      <p>@Chayuga</p>
+      <p>
+        Front-end engineer at DVT Ltd.<br />
+        ReactJs, Typescript, Redux, Web3
+
+      </p>
+      <div>
+        <p>Facebook Link</p>
+        <p>Location: Nairobi-Kenya</p>
+      </div>
+      <button type="button">Follow</button>
     </div>
   );
 }

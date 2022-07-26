@@ -29,6 +29,9 @@ function NavBar() {
   const theme = useTheme();
   const isAuthenticated = true;
 
+  // TODO: Write function to switch to dark and light modes
+  const switchDarkMode = () => {};
+
   return (
     <AppBar position="relative" style={{ background: 'transparent', boxShadow: 'none', color: 'black', width: '100%' }}>
       <Toolbar className={classes.toolbar}>
@@ -57,7 +60,7 @@ function NavBar() {
               <IconButton
                 color="inherit"
                 sx={{ ml: 1, mr: 2 }}
-                onClick={() => {}}
+                onClick={switchDarkMode}
               >
                 {theme.palette.mode === 'dark' ? (
                   <Brightness7 />
@@ -86,7 +89,6 @@ function NavBar() {
                 component={Link}
                 to="/notification"
                 className={classes.linkButton}
-                onClick={() => {}}
               >
                 <Notifications /> &nbsp; <ArrowDropDown />
               </Button>
