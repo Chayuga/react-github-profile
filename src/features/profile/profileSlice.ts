@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-interface initialStateObject{
+export interface initialStateObject{
   user: string;
   loading: boolean;
   reposList: Array<object> | undefined;
+  profile: Array<object> | undefined;
   error: unknown;
 
 }
 
 const userInitial = {
-  user: 'chayuga',
+  user: 'Chayuga',
 } as initialStateObject;
 
 // Creating Actions for Repos
