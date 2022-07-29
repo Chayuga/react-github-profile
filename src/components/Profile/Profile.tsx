@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import useStyles from './styles';
 
-import { fetchProfileAction, initialStateObject } from '../../features/profile/profileSlice';
+import { fetchProfileAction } from '../../features/profile/profileSlice';
 
 import { useAppDispatch } from '../../app/store';
+import { IStoreDataTypes } from '../../app/types';
 
 function Profile() {
   const classes = useStyles();
@@ -20,8 +21,11 @@ function Profile() {
     dispatch(fetchProfileAction(user));
   }, [dispatch]);
 
-  const store:initialStateObject = useSelector((state) => state?.profile);
-  const { loading, reposList, profile, error } = store;
+  const store = useSelector((state:IStoreDataTypes) => state?.profile);
+
+  const { loading, profile } = store;
+
+  console.log('========>', store);
 
   return (
     <div className={classes.profile}>
@@ -39,7 +43,6 @@ function Profile() {
               </span>
             </div>
             <div>&#64; {profile?.login}</div>
-            <p>@Chayuga</p>
             <div>
               Bio: <span>{profile?.bio}</span>
             </div>

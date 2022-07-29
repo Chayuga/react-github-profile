@@ -1,24 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-export interface initialStateObject{
-  user: string;
-  loading: boolean;
-  reposList: Array<object> | undefined;
-  profile: Array<object> | undefined;
-  error: unknown;
-
-}
+import { IProfileStateType } from '../../app/types';
 
 const userInitial = {
   user: 'Chayuga',
-} as initialStateObject;
+} as IProfileStateType;
 
 // Creating Actions for Repos
-export const fetchProfileAction = createAsyncThunk('profile/list', async (user, { rejectWithValue, getState, dispatch }) => {
+export const fetchProfileAction = createAsyncThunk('profile/list', async (user: string, { rejectWithValue }) => {
   try {
     // make http call.
-    const { data } = await axios.get(`https://api.github.com/users/${user}/repos?per_page=30&sort==asc`);
+    const { data } = await axios.get(`https://api.github.com/users/${user}`);
     return data;
   } catch (error) {
     if (error instanceof Error && !error?.message) {
@@ -28,7 +20,7 @@ export const fetchProfileAction = createAsyncThunk('profile/list', async (user, 
   }
 });
 
-// slice for Repos
+// slice for Profile
 const profileSlices = createSlice({
   name: 'repos',
   initialState: userInitial,
@@ -37,11 +29,11 @@ const profileSlices = createSlice({
     builder.addCase(fetchProfileAction.pending, (state) => ({ ...state, loading: true }));
 
     builder.addCase(fetchProfileAction.fulfilled, (state, action) => ({
-      ...state, loading: false, reposList: action?.payload, error: undefined,
+      ...state, loading: false, profile: action?.payload, error: undefined,
     }));
 
     builder.addCase(fetchProfileAction.rejected, (state, action) => ({
-      ...state, loading: false, reposList: undefined, error: action?.payload,
+      ...state, loading: false, profile: undefined, error: action?.payload,
     }));
   },
 });

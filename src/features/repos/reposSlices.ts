@@ -1,20 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-interface initialStateObject{
-  user: string;
-  loading: boolean;
-  reposList: Array<object> | undefined;
-  error: unknown;
-
-}
+import { IReposStateType } from '../../app/types';
 
 const userInitial = {
   user: 'chayuga',
-} as initialStateObject;
+} as IReposStateType;
 
 // Creating Actions for Repos
-const fetchReposAction = createAsyncThunk('repos/list', async (user, { rejectWithValue, getState, dispatch }) => {
+const fetchReposAction = createAsyncThunk('repos/list', async (user, { rejectWithValue }) => {
   try {
     // make http call.
     const { data } = await axios.get(`https://api.github.com/users/${user}/repos?per_page=30&sort==asc`);
