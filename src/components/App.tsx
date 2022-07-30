@@ -26,10 +26,10 @@ function App() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Routes>
-            <Route path="/" element={<PullRequests />} />
+            <Route path="/pull-request" element={<PullRequests />} />
             <Route path="/issues" element={<Issues />} />
             <Route path="/market" element={<Market />} />
-            <Route path="/explore" element={<Explore />} />
+            <Route path="/" element={<Explore />} />
             <Route path="/overview" element={<Overview />} />
             <Route path="/repositories" element={<Repositories />} />
             <Route path="/stars" element={<Stars />} />

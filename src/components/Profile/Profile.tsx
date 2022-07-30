@@ -124,19 +124,19 @@ function Profile() {
                   <div className={classes.socialButton}>
                     <StarRate style={{ color: 'blue', fontSize: 'medium' }} />
                     <p style={{ marginLeft: '10px' }}>
-                      Stars <span className={classes.gitCount}>189</span>
+                      Stars <span className={classes.gitCount}>{profile?.stargazers_count ? profile?.stargazers_count : '0'}</span>
                     </p>
                   </div>
                   <div className={classes.socialButton}>
                     <People style={{ color: 'blue', fontSize: 'medium' }} />
                     <p style={{ marginLeft: '10px' }}>
-                      Follower <span className={classes.gitCount}>{profile?.followers}</span>
+                      Follower <span className={classes.gitCount}>{profile?.followers ? profile?.followers : '0'}</span>
                     </p>
                   </div>
                   <div className={classes.socialButton}>
                     <Person style={{ color: 'blue', fontSize: 'medium' }} />
                     <p style={{ marginLeft: '10px' }}>
-                      Following <span className={classes.gitCount}>{profile?.following}</span>
+                      Following <span className={classes.gitCount}>{profile?.following ? profile?.following : '0'}</span>
                     </p>
                   </div>
                 </Box>
