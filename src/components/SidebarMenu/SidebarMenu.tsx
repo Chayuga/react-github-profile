@@ -43,7 +43,7 @@ function SidebarMenu() {
           <Link key={value} className={classes.links} to={value}>
             <ListItem button>
               <ListItemIcon>
-                <img src={githubWhite} height={30} alt={`${label} logo`} />
+                <img src={githubWhite} height={20} alt={`${label} logo`} />
               </ListItemIcon>
               <ListItemText primary={label} />
             </ListItem>
