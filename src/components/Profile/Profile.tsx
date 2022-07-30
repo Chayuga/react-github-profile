@@ -65,7 +65,7 @@ function Profile() {
   console.log('========>', store);
 
   return (
-    <div className={classes.profile}>
+    <div>
       {loading ? <h1 className="text-green-300 text-3xl text-center">Loading please wait...</h1>
         : (
           <div>
@@ -120,25 +120,25 @@ function Profile() {
                   <div className={classes.socialButton}>
                     <Layers style={{ color: 'blue', fontSize: 'medium' }} />
                     <p style={{ marginLeft: '10px' }}>
-                      Repositories <span>{profile?.public_repos ? profile?.public_repos : 'N/A'}</span>
+                      Repositories <span className={classes.gitCount}>{profile?.public_repos ? profile?.public_repos : 'N/A'}</span>
                     </p>
                   </div>
                   <div className={classes.socialButton}>
                     <StarRate style={{ color: 'blue', fontSize: 'medium' }} />
                     <p style={{ marginLeft: '10px' }}>
-                      Stars <span>189</span>
+                      Stars <span className={classes.gitCount}>189</span>
                     </p>
                   </div>
                   <div className={classes.socialButton}>
                     <People style={{ color: 'blue', fontSize: 'medium' }} />
                     <p style={{ marginLeft: '10px' }}>
-                      Follower <span>{profile?.followers}</span>
+                      Follower <span className={classes.gitCount}>{profile?.followers}</span>
                     </p>
                   </div>
                   <div className={classes.socialButton}>
                     <Person style={{ color: 'blue', fontSize: 'medium' }} />
                     <p style={{ marginLeft: '10px' }}>
-                      Following <span>{profile?.following}</span>
+                      Following <span className={classes.gitCount}>{profile?.following}</span>
                     </p>
                   </div>
                 </Box>
