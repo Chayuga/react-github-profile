@@ -4,6 +4,7 @@ export default makeStyles(() => ({
   sideBar: {
     height: '100vh',
     backgroundColor: '#3440e3',
+    padding: '40px 10px 10px 10px',
   },
   imageLink: {
     display: 'flex',
