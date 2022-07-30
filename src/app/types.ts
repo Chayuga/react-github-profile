@@ -9,6 +9,9 @@ export interface IProfile{
     followers: number;
     following: number;
     public_repos: number;
+    stargazers_count: number;
+    open_issues_count: number;
+    forks_count: number;
 
 }
 export interface IProfileStateType{
