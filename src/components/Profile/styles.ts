@@ -68,5 +68,14 @@ export default makeStyles((theme: Theme) => ({
     color: 'blue',
     fontSize: 'medium',
   },
+  socialButton_count: {
+    marginLeft: '20',
+    justifyContent: 'center',
+    padding: '4px 4px',
+    borderRadius: '50px',
+    fontSize: '12px',
+    backgroundColor: 'green',
+    color: 'white',
+  },
 
 }));

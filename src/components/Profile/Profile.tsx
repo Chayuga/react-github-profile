@@ -146,7 +146,7 @@ function Profile() {
                   <Layers className={classes.socialMenuItem} />
                   <p className={classes.socialButton_span}>
                     Repositories{' '}
-                    <span className={classes.gitCount}>
+                    <span className={classes.socialButton_count}>
                       {profile?.public_repos ? profile?.public_repos : 'N/A'}
                     </span>
                   </p>
@@ -155,7 +155,7 @@ function Profile() {
                   <StarRate className={classes.socialMenuItem} />
                   <p className={classes.socialButton_span}>
                     Stars{' '}
-                    <span className={classes.gitCount}>
+                    <span className={classes.socialButton_count}>
                       {profile?.stargazers_count
                         ? profile?.stargazers_count
                         : '0'}
@@ -166,7 +166,7 @@ function Profile() {
                   <People className={classes.socialMenuItem} />
                   <p className={classes.socialButton_span}>
                     Follower{' '}
-                    <span className={classes.gitCount}>
+                    <span className={classes.socialButton_count}>
                       {profile?.followers ? profile?.followers : '0'}
                     </span>
                   </p>
@@ -175,7 +175,7 @@ function Profile() {
                   <Person className={classes.socialMenuItem} />
                   <p className={classes.socialButton_span}>
                     Following{' '}
-                    <span className={classes.gitCount}>
+                    <span className={classes.socialButton_count}>
                       {profile?.following ? profile?.following : '0'}
                     </span>
                   </p>
