@@ -1,35 +1,36 @@
-import React from "react";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   Divider,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
   ListSubheader,
-} from "@mui/material";
-import { Link } from "react-router-dom";
+} from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Person, ReportGmailerrorred, ShoppingBag, Language, RemoveRedEye, Layers, StarRate, People } from '@mui/icons-material';
 
-import useStyles from "./styles";
+import { fetchProfileAction } from '../../features/profile/profileSlice';
 
-import githubWhite from "../assets/logo/github_white.png";
-// import githubblack from '../assets/logo/github_black.png';
+import { useAppDispatch } from '../../app/store';
+import { IStoreDataTypes } from '../../app/types';
 
-const mainMenu = [
-  { label: "Pull Request", value: "pull-request" },
-  { label: "Issues", value: "issues" },
-  { label: "Market", value: "market" },
-  { label: "Explore", value: "explore" },
-];
+import useStyles from './styles';
 
-const otherMenu = [
-  { label: "Overview", value: "overview" },
-  { label: "Repositories", value: "Repositories" },
-  { label: "Stars", value: "Stars" },
-  { label: "Followers", value: "Followers" },
-];
+import githubWhite from '../assets/logo/github_white.png';
 
 function SidebarMenu() {
   const classes = useStyles();
+  const [user, setUser] = useState('Chayuga');
+
+  // dispatch
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProfileAction(user));
+  }, [dispatch]);
+
+  const store = useSelector((state: IStoreDataTypes) => state?.profile);
+
+  const { profile } = store;
 
   return (
     <div className={classes.sideBar}>
@@ -37,33 +38,68 @@ function SidebarMenu() {
         <img src={githubWhite} alt="GitHub Logo" className={classes.image} />
       </Link>
       <Divider />
-      <List>
-        <ListSubheader className={classes.subHeader}>MAIN</ListSubheader>
-        {mainMenu.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to={value}>
-            <ListItem button>
-              <ListItemIcon>
-                <img src={githubWhite} height={30} alt={`${label} logo`} />
-              </ListItemIcon>
-              <ListItemText primary={label} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+      <ListSubheader className={classes.subHeader}>MAIN</ListSubheader>
+      <Link to="/pull-request" className={classes.links}>
+        <Person style={{ color: 'white', fontSize: 'large' }} />
+        <p style={{ marginLeft: '10px' }}>
+          Pull Request
+        </p>
+      </Link>
+      <Link to="/issues" className={classes.links}>
+        <ReportGmailerrorred style={{ color: 'white', fontSize: 'large' }} />
+        <p style={{ marginLeft: '10px' }}>
+          Issues
+        </p>
+      </Link>
+      <Link to="/market" className={classes.links}>
+        <ShoppingBag style={{ color: 'white', fontSize: 'large' }} />
+        <p style={{ marginLeft: '10px' }}>
+          Market
+        </p>
+      </Link>
+      <Link to="/explore" className={classes.links}>
+        <Language style={{ color: 'white', fontSize: 'large' }} />
+        <p style={{ marginLeft: '10px' }}>
+          Explore
+        </p>
+      </Link>
       <Divider />
-      <List>
-        <ListSubheader className={classes.subHeader}>OTHER</ListSubheader>
-        {otherMenu.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to={value}>
-            <ListItem button>
-              <ListItemIcon>
-                <img src={githubWhite} height={30} alt={`${label} logo`} />
-              </ListItemIcon>
-              <ListItemText primary={label} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+      <ListSubheader className={classes.subHeader}>OTHER</ListSubheader>
+      <Link to="/" className={classes.links}>
+        <RemoveRedEye style={{ color: 'white', fontSize: 'large' }} />
+        <p style={{ marginLeft: '10px' }}>
+          Overview
+        </p>
+      </Link>
+      <Link to="/repositories" className={classes.links}>
+        <Layers style={{ color: 'white', fontSize: 'large' }} />
+        <p style={{ marginLeft: '10px' }}>
+          Repositories{' '}
+          <span className={classes.socialButton_count}>
+            {profile?.public_repos ? profile?.public_repos : 0}
+          </span>
+        </p>
+      </Link>
+      <Link to="/stars" className={classes.links}>
+        <StarRate style={{ color: 'white', fontSize: 'large' }} />
+        <p style={{ marginLeft: '10px' }}>
+          Stars{' '}
+          <span className={classes.socialButton_count}>
+            {profile?.stargazers_count
+              ? profile?.stargazers_count
+              : '0'}
+          </span>
+        </p>
+      </Link>
+      <Link to="/followers" className={classes.links}>
+        <People style={{ color: 'white', fontSize: 'large' }} />
+        <p style={{ marginLeft: '10px' }}>
+          Folowers{' '}
+          <span className={classes.socialButton_count}>
+            {profile?.followers ? profile?.followers : '0'}
+          </span>
+        </p>
+      </Link>
     </div>
   );
 }
