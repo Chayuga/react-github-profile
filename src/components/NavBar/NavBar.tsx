@@ -181,7 +181,16 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }} className={classes.appBarContainer}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar
+        position="static"
+        style={{
+          top: '0',
+          background: '#f7f7f7',
+          boxShadow: 'none',
+          color: 'black',
+          display: 'flex',
+        }}
+      >
         <Toolbar>
           {isMobile && (
           <IconButton
@@ -194,7 +203,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           )}
-          <Search className={classes.searchBar}>
+          <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
