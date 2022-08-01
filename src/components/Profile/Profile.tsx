@@ -6,7 +6,7 @@ import Badge from '@mui/material/Badge';
 
 import useStyles from './styles';
 
-import AvatarImage from '../assets/images/avatar.jpg';
+import AvatarImage from '../assets/images/avatar.png';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -39,7 +39,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 function Profile() {
   const classes = useStyles();
-  const padding = 20;
 
   return (
     <div>
@@ -58,60 +57,60 @@ function Profile() {
             />
           </StyledBadge>
 
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', paddingTop: padding }}>
+          <div className={classes.profileName}>
             Rodgers Chayuga
-            <span style={{ color: '#706e6e' }}>&#64;Chayuga</span>
+            <span className={classes.profileName_loginUser}>&#64;Chayuga</span>
           </div>
 
-          <div style={{ textAlign: 'center', paddingTop: padding }}>
+          <div className={classes.profileBio}>
             Front-end engineer at Dynamic Visual Technology.<br />
-            <span style={{ color: '#706e6e' }}>
+            <span className={classes.profileName_loginUser}>
               SKILLS: ReactJS | NextJS | Typescript | Redux | Solidity | Web3
             </span>
           </div>
         </Box>
-        <Box style={{ margin: '10px 30px', display: 'flex', flexDirection: 'column' }}>
-          <Box style={{ paddingTop: padding }}>
+        <Box className={classes.socialGroup}>
+          <Box className={classes.socialGroupMenus}>
             <div className={classes.socialButton}>
-              <Facebook style={{ color: 'blue', fontSize: 'medium' }} />
+              <Facebook className={classes.socialMenuItem} />
               <Button href="https://web.facebook.com/senajichayuga/" target="_blank" style={{ color: 'rgba(0,0,0,0.8)' }}>
                 Facebook
               </Button>
             </div>
             <div className={classes.socialButton}>
-              <Place style={{ color: 'blue', fontSize: 'medium' }} />
-              <p style={{ marginLeft: '10px' }}>
+              <Place className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
                 Nairobi, Kenya
               </p>
             </div>
           </Box>
-          <Button variant="outlined" style={{ marginTop: padding, borderStyle: 'solid', color: 'primary', borderRadius: '50px' }}>
-            <a href="https://github.com/Chayuga" target="_blank" style={{ textDecoration: 'none', color: 'blue' }} rel="noreferrer">
+          <Button variant="outlined" className={classes.socialMenuButton}>
+            <a href="https://github.com/Chayuga" target="_blank" className={classes.socialMenuButton_link} rel="noreferrer">
               Follow
             </a>
           </Button>
-          <Box style={{ display: 'flex', flexDirection: 'column', paddingTop: padding }}>
+          <Box className={classes.socialGroupMenus}>
             <div className={classes.socialButton}>
-              <Layers style={{ color: 'blue', fontSize: 'medium' }} />
-              <p style={{ marginLeft: '10px' }}>
+              <Layers className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
                 Repositories <span>189</span>
               </p>
             </div>
             <div className={classes.socialButton}>
-              <StarRate style={{ color: 'blue', fontSize: 'medium' }} />
-              <p style={{ marginLeft: '10px' }}>
+              <StarRate className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
                 Stars <span>189</span>
               </p>
             </div>
             <div className={classes.socialButton}>
-              <People style={{ color: 'blue', fontSize: 'medium' }} />
-              <p style={{ marginLeft: '10px' }}>
+              <People className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
                 Follower <span>24</span>
               </p>
             </div>
             <div className={classes.socialButton}>
-              <Person style={{ color: 'blue', fontSize: 'medium' }} />
-              <p style={{ marginLeft: '10px' }}>
+              <Person className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
                 Following <span>77</span>
               </p>
             </div>
