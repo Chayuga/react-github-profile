@@ -1,4 +1,4 @@
-import { Avatar, Box, Button } from "@mui/material";
+import { Avatar, Box, Button } from '@mui/material';
 
 import {
   Place,
@@ -7,46 +7,46 @@ import {
   StarRate,
   People,
   Person,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
-import { styled } from "@mui/material/styles";
-import Badge from "@mui/material/Badge";
+import { styled } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
 
 // import { useSelector } from 'react-redux';
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import localAvatar from "../assets/images/avatar.png";
-import useStyles from "./styles";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import localAvatar from '../assets/images/avatar.png';
+import useStyles from './styles';
 
-import { fetchProfileAction } from "../../features/profile/profileSlice";
+import { fetchProfileAction } from '../../features/profile/profileSlice';
 
-import { useAppDispatch } from "../../app/store";
-import { IStoreDataTypes } from "../../app/types";
+import { useAppDispatch } from '../../app/store';
+import { IStoreDataTypes } from '../../app/types';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
-    backgroundColor: "#44b700",
-    color: "#44b700",
+  '& .MuiBadge-badge': {
+    backgroundColor: '#44b700',
+    color: '#44b700',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    "&::after": {
-      position: "absolute",
+    '&::after': {
+      position: 'absolute',
       top: 0,
       left: 0,
-      width: "100%",
-      height: "100%",
-      borderRadius: "50%",
-      animation: "ripple 1.2s infinite ease-in-out",
-      border: "1px solid currentColor",
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: 'ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
       content: '""',
     },
   },
-  "@keyframes ripple": {
-    "0%": {
-      transform: "scale(.8)",
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
       opacity: 1,
     },
-    "100%": {
-      transform: "scale(4.4)",
+    '100%': {
+      transform: 'scale(4.4)',
       opacity: 0,
     },
   },
@@ -56,7 +56,7 @@ function Profile() {
   const classes = useStyles();
 
   const padding = 20;
-  const [user, setUser] = useState("Chayuga");
+  const [user, setUser] = useState('Chayuga');
 
   // dispatch
   const dispatch = useAppDispatch();
@@ -86,7 +86,7 @@ function Profile() {
             >
               <StyledBadge
                 overlap="circular"
-                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 variant="dot"
               >
                 <Avatar
@@ -98,57 +98,57 @@ function Profile() {
 
               <div
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  textAlign: "center",
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  textAlign: 'center',
                   paddingTop: padding,
                 }}
               >
                 {profile?.name}
-                <span style={{ color: "#706e6e" }}>&#64;{profile?.login}</span>
+                <span style={{ color: '#706e6e' }}>&#64;{profile?.login}</span>
               </div>
 
-              <div style={{ textAlign: "center", paddingTop: padding }}>
-                <span style={{ color: "#706e6e" }}>{profile?.bio}</span>
+              <div style={{ textAlign: 'center', paddingTop: padding }}>
+                <span style={{ color: '#706e6e' }}>{profile?.bio}</span>
               </div>
             </Box>
             <Box
               style={{
-                margin: "10px 30px",
-                display: "flex",
-                flexDirection: "column",
+                margin: '10px 30px',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               <Box style={{ paddingTop: padding }}>
                 <div className={classes.socialButton}>
-                  <Facebook style={{ color: "blue", fontSize: "medium" }} />
+                  <Facebook style={{ color: 'blue', fontSize: 'medium' }} />
                   <Button
                     href=""
                     target="_blank"
-                    style={{ color: "rgba(0,0,0,0.8)" }}
+                    style={{ color: 'rgba(0,0,0,0.8)' }}
                   >
                     Facebook
                   </Button>
                 </div>
                 <div className={classes.socialButton}>
-                  <Place style={{ color: "blue", fontSize: "medium" }} />
-                  <p style={{ marginLeft: "10px" }}>{profile?.location}</p>
+                  <Place style={{ color: 'blue', fontSize: 'medium' }} />
+                  <p style={{ marginLeft: '10px' }}>{profile?.location}</p>
                 </div>
               </Box>
               <Button
                 variant="outlined"
                 style={{
                   marginTop: padding,
-                  borderStyle: "solid",
-                  color: "primary",
-                  borderRadius: "50px",
+                  borderStyle: 'solid',
+                  color: 'primary',
+                  borderRadius: '50px',
                 }}
               >
                 <a
                   href={profile?.html_url}
                   target="_blank"
-                  style={{ textDecoration: "none", color: "blue" }}
+                  style={{ textDecoration: 'none', color: 'blue' }}
                   rel="noreferrer"
                 >
                   Follow
@@ -156,46 +156,46 @@ function Profile() {
               </Button>
               <Box
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
+                  display: 'flex',
+                  flexDirection: 'column',
                   paddingTop: padding,
                 }}
               >
                 <div className={classes.socialButton}>
-                  <Layers style={{ color: "blue", fontSize: "medium" }} />
-                  <p style={{ marginLeft: "10px" }}>
-                    Repositories{" "}
-                    <span className={classes.gitCount}>
-                      {profile?.public_repos ? profile?.public_repos : "N/A"}
+                  <Layers style={{ color: 'blue', fontSize: 'medium' }} />
+                  <p style={{ marginLeft: '10px' }}>
+                    Repositories{' '}
+                    <span className={classes.socialButton_count}>
+                      {profile?.public_repos ? profile?.public_repos : 'N/A'}
                     </span>
                   </p>
                 </div>
                 <div className={classes.socialButton}>
-                  <StarRate style={{ color: "blue", fontSize: "medium" }} />
-                  <p style={{ marginLeft: "10px" }}>
-                    Stars{" "}
-                    <span className={classes.gitCount}>
+                  <StarRate style={{ color: 'blue', fontSize: 'medium' }} />
+                  <p style={{ marginLeft: '10px' }}>
+                    Stars{' '}
+                    <span className={classes.socialButton_count}>
                       {profile?.stargazers_count
                         ? profile?.stargazers_count
-                        : "0"}
+                        : '0'}
                     </span>
                   </p>
                 </div>
                 <div className={classes.socialButton}>
-                  <People style={{ color: "blue", fontSize: "medium" }} />
-                  <p style={{ marginLeft: "10px" }}>
-                    Follower{" "}
-                    <span className={classes.gitCount}>
-                      {profile?.followers ? profile?.followers : "0"}
+                  <People style={{ color: 'blue', fontSize: 'medium' }} />
+                  <p style={{ marginLeft: '10px' }}>
+                    Follower{' '}
+                    <span className={classes.socialButton_count}>
+                      {profile?.followers ? profile?.followers : '0'}
                     </span>
                   </p>
                 </div>
                 <div className={classes.socialButton}>
-                  <Person style={{ color: "blue", fontSize: "medium" }} />
-                  <p style={{ marginLeft: "10px" }}>
-                    Following{" "}
-                    <span className={classes.gitCount}>
-                      {profile?.following ? profile?.following : "0"}
+                  <Person style={{ color: 'blue', fontSize: 'medium' }} />
+                  <p style={{ marginLeft: '10px' }}>
+                    Following{' '}
+                    <span className={classes.socialButton_count}>
+                      {profile?.following ? profile?.following : '0'}
                     </span>
                   </p>
                 </div>
