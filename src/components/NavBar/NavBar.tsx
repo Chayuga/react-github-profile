@@ -1,22 +1,10 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import {
-  Menu as MenuIcon,
-  Search as SearchIcon,
-  AccountCircle,
-  Mail as MailIcon,
-  Notifications as NotificationsIcon,
-  More as MoreIcon,
-} from '@mui/icons-material';
+import { styled, alpha, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { AppBar, Box, Toolbar, IconButton, InputBase, Badge, MenuItem, Menu } from '@mui/material';
+import { Menu as MenuIcon, Search as SearchIcon, AccountCircle, Mail as MailIcon, Notifications as NotificationsIcon, More as MoreIcon, Logout as LogoutIcon } from '@mui/icons-material';
 import { useState } from 'react';
+import useStyles from './styles';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -48,7 +36,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -59,12 +46,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [isProfileOpen, setIsProfileOpen] = useState<boolean>(true);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -79,9 +66,29 @@ export default function PrimarySearchAppBar() {
     handleMobileMenuClose();
   };
 
+  const handleProfileComponent = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+    setIsProfileOpen((prevState) => !prevState);
+  };
+
+  const handleLogut = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+    // TODO: add logic to logout
+  };
+
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const classes = useStyles();
+
+  const notificationCount = 23;
+  const mailCount = 14;
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -100,8 +107,8 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleProfileComponent}>{isProfileOpen ? 'Close' : 'Open'} Profile</MenuItem>
+      <MenuItem onClick={handleLogut}>Logout</MenuItem>
     </Menu>
   );
 
@@ -124,7 +131,7 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={mailCount} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -136,68 +143,70 @@ export default function PrimarySearchAppBar() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={notificationCount} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      {isMobile ? (
+        <MenuItem onClick={handleLogut}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <LogoutIcon />
+          </IconButton>
+          <p>Logout</p>
+        </MenuItem>
+      ) : (
+        <MenuItem onClick={handleProfileMenuOpen}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <p>Profile</p>
+        </MenuItem>
+      ) }
     </Menu>
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        style={{
-          top: '0',
-          background: '#f7f7f7',
-          boxShadow: 'none',
-          color: 'black',
-          display: 'flex',
-        }}
-      >
+    <Box sx={{ flexGrow: 1 }} className={classes.appBarContainer}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
+          {isMobile && (
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
           >
             <MenuIcon />
           </IconButton>
-          <Search>
+          )}
+          <Search className={classes.searchBar}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search GitHub…"
               inputProps={{ 'aria-label': 'search' }}
-              sx={{}}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={mailCount} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
@@ -206,7 +215,7 @@ export default function PrimarySearchAppBar() {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={notificationCount} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
