@@ -1,12 +1,27 @@
 import { Avatar, Box, Button } from '@mui/material';
-import { Place, Facebook, Layers, StarRate, People, Person } from '@mui/icons-material';
+
+import {
+  Place,
+  Facebook,
+  Layers,
+  StarRate,
+  People,
+  Person,
+} from '@mui/icons-material';
 
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 
+// import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import localAvatar from '../assets/images/avatar.png';
 import useStyles from './styles';
 
-import AvatarImage from '../assets/images/avatar.png';
+import { fetchProfileAction } from '../../features/profile/profileSlice';
+
+import { useAppDispatch } from '../../app/store';
+import { IStoreDataTypes } from '../../app/types';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -40,84 +55,136 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function Profile() {
   const classes = useStyles();
 
+  const padding = 20;
+  const [user, setUser] = useState('Chayuga');
+
+  // dispatch
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProfileAction(user));
+  }, [dispatch]);
+
+  const store = useSelector((state: IStoreDataTypes) => state?.profile);
+
+  const { loading, profile } = store;
+
   return (
-    <div>
-      <div className={classes.profile}>
-        <Box display="flex" flexDirection="column" justifyContent="space-around" alignItems="center">
+    <div className={classes.profile}>
+      {loading ? (
+        <h1 className="text-green-300 text-3xl text-center">
+          Loading please wait...
+        </h1>
+      ) : (
+        <div>
+          <div>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-around"
+              alignItems="center"
+            >
+              <StyledBadge
+                overlap="circular"
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                variant="dot"
+              >
+                <Avatar
+                  alt="Profile"
+                  src={profile?.avatar_url ? profile?.avatar_url : localAvatar}
+                  sx={{ width: 165, height: 165 }}
+                />
+              </StyledBadge>
 
-          <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            variant="dot"
-          >
-            <Avatar
-              alt="Profile"
-              src={AvatarImage}
-              sx={{ width: 165, height: 165 }}
-            />
-          </StyledBadge>
+              <div
+                className={classes.profileName}
+              >
+                {profile?.name}
+                <span className={classes.profileName_loginUser}>&#64;{profile?.login}</span>
+              </div>
 
-          <div className={classes.profileName}>
-            Rodgers Chayuga
-            <span className={classes.profileName_loginUser}>&#64;Chayuga</span>
-          </div>
-
-          <div className={classes.profileBio}>
-            Front-end engineer at Dynamic Visual Technology.<br />
-            <span className={classes.profileName_loginUser}>
-              SKILLS: ReactJS | NextJS | Typescript | Redux | Solidity | Web3
-            </span>
-          </div>
-        </Box>
-        <Box className={classes.socialGroup}>
-          <Box className={classes.socialGroupMenus}>
-            <div className={classes.socialButton}>
-              <Facebook className={classes.socialMenuItem} />
-              <Button href="https://web.facebook.com/senajichayuga/" target="_blank" style={{ color: 'rgba(0,0,0,0.8)' }}>
-                Facebook
+              <div className={classes.profileBio}>
+                {profile?.bio}
+              </div>
+            </Box>
+            <Box
+              className={classes.socialGroup}
+            >
+              <Box className={classes.socialGroupMenus}>
+                <div className={classes.socialButton}>
+                  <Facebook className={classes.socialMenuItem} />
+                  <Button
+                    href=""
+                    target="_blank"
+                    style={{ color: 'rgba(0,0,0,0.8)' }}
+                  >
+                    Facebook
+                  </Button>
+                </div>
+                <div className={classes.socialButton}>
+                  <Place className={classes.socialMenuItem} />
+                  <p className={classes.socialButton_span}>{profile?.location}</p>
+                </div>
+              </Box>
+              <Button
+                variant="outlined"
+                className={classes.socialMenuButton}
+              >
+                <a
+                  href={profile?.html_url}
+                  target="_blank"
+                  className={classes.socialMenuButton_link}
+                  rel="noreferrer"
+                >
+                  Follow
+                </a>
               </Button>
-            </div>
-            <div className={classes.socialButton}>
-              <Place className={classes.socialMenuItem} />
-              <p className={classes.socialButton_span}>
-                Nairobi, Kenya
-              </p>
-            </div>
-          </Box>
-          <Button variant="outlined" className={classes.socialMenuButton}>
-            <a href="https://github.com/Chayuga" target="_blank" className={classes.socialMenuButton_link} rel="noreferrer">
-              Follow
-            </a>
-          </Button>
-          <Box className={classes.socialGroupMenus}>
-            <div className={classes.socialButton}>
-              <Layers className={classes.socialMenuItem} />
-              <p className={classes.socialButton_span}>
-                Repositories <span>189</span>
-              </p>
-            </div>
-            <div className={classes.socialButton}>
-              <StarRate className={classes.socialMenuItem} />
-              <p className={classes.socialButton_span}>
-                Stars <span>189</span>
-              </p>
-            </div>
-            <div className={classes.socialButton}>
-              <People className={classes.socialMenuItem} />
-              <p className={classes.socialButton_span}>
-                Follower <span>24</span>
-              </p>
-            </div>
-            <div className={classes.socialButton}>
-              <Person className={classes.socialMenuItem} />
-              <p className={classes.socialButton_span}>
-                Following <span>77</span>
-              </p>
-            </div>
-          </Box>
-        </Box>
-
-      </div>
+              <Box
+                className={classes.socialGroupMenus}
+              >
+                <div className={classes.socialButton}>
+                  <Layers className={classes.socialMenuItem} />
+                  <p className={classes.socialButton_span}>
+                    Repositories{' '}
+                    <span className={classes.gitCount}>
+                      {profile?.public_repos ? profile?.public_repos : 'N/A'}
+                    </span>
+                  </p>
+                </div>
+                <div className={classes.socialButton}>
+                  <StarRate className={classes.socialMenuItem} />
+                  <p className={classes.socialButton_span}>
+                    Stars{' '}
+                    <span className={classes.gitCount}>
+                      {profile?.stargazers_count
+                        ? profile?.stargazers_count
+                        : '0'}
+                    </span>
+                  </p>
+                </div>
+                <div className={classes.socialButton}>
+                  <People className={classes.socialMenuItem} />
+                  <p className={classes.socialButton_span}>
+                    Follower{' '}
+                    <span className={classes.gitCount}>
+                      {profile?.followers ? profile?.followers : '0'}
+                    </span>
+                  </p>
+                </div>
+                <div className={classes.socialButton}>
+                  <Person className={classes.socialMenuItem} />
+                  <p className={classes.socialButton_span}>
+                    Following{' '}
+                    <span className={classes.gitCount}>
+                      {profile?.following ? profile?.following : '0'}
+                    </span>
+                  </p>
+                </div>
+              </Box>
+            </Box>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

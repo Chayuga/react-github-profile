@@ -39,6 +39,7 @@ export default makeStyles((theme: Theme) => ({
   profileBio: {
     textAlign: 'center',
     paddingTop: padding,
+    color: '#706e6e',
   },
 
   socialGroup: {
@@ -46,7 +47,8 @@ export default makeStyles((theme: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  socialGroupMenus: { display: 'flex',
+  socialGroupMenus: {
+    display: 'flex',
     flexDirection: 'column',
     paddingTop: padding,
   },
