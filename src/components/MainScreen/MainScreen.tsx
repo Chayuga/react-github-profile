@@ -1,9 +1,9 @@
-import React from 'react';
-import { Profile, NavBar } from '..';
-import useStyles from './styles';
+import React from "react";
+import { Profile, NavBar } from "..";
+import useStyles from "./styles";
 
-interface IChildren{
-    children: JSX.Element[] | JSX.Element,
+interface IChildren {
+  children: JSX.Element[] | JSX.Element;
 }
 
 function MainScreen({ children }: IChildren) {
@@ -16,7 +16,6 @@ function MainScreen({ children }: IChildren) {
         <NavBar />
         {children}
       </div>
-
     </div>
   );
 }

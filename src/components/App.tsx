@@ -1,7 +1,7 @@
-import { CssBaseline } from '@mui/material';
-import { Route, Routes } from 'react-router-dom';
+import { CssBaseline } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
 
-import useStyles from './styles';
+import useStyles from "./styles";
 import {
   PullRequests,
   Issues,
@@ -13,7 +13,7 @@ import {
   Followers,
   MainScreen,
   Sidebar,
-} from '.';
+} from ".";
 
 function App() {
   const classes = useStyles();

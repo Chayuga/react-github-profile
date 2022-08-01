@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Divider,
   List,
@@ -6,26 +6,26 @@ import {
   ListItemText,
   ListItemIcon,
   ListSubheader,
-} from '@mui/material';
-import { Link } from 'react-router-dom';
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
-import useStyles from './styles';
+import useStyles from "./styles";
 
-import githubWhite from '../assets/logo/github_white.png';
+import githubWhite from "../assets/logo/github_white.png";
 // import githubblack from '../assets/logo/github_black.png';
 
 const mainMenu = [
-  { label: 'Pull Request', value: 'pull-request' },
-  { label: 'Issues', value: 'issues' },
-  { label: 'Market', value: 'market' },
-  { label: 'Explore', value: 'explore' },
+  { label: "Pull Request", value: "pull-request" },
+  { label: "Issues", value: "issues" },
+  { label: "Market", value: "market" },
+  { label: "Explore", value: "explore" },
 ];
 
 const otherMenu = [
-  { label: 'Overview', value: 'overview' },
-  { label: 'Repositories', value: 'Repositories' },
-  { label: 'Stars', value: 'Stars' },
-  { label: 'Followers', value: 'Followers' },
+  { label: "Overview", value: "overview" },
+  { label: "Repositories", value: "Repositories" },
+  { label: "Stars", value: "Stars" },
+  { label: "Followers", value: "Followers" },
 ];
 
 function SidebarMenu() {

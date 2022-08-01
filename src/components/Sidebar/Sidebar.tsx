@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { Drawer,
-  useMediaQuery } from '@mui/material';
+import React, { useState } from "react";
+import { Drawer, useMediaQuery } from "@mui/material";
 
-import { SidebarMenu } from '..';
-import useStyles from './styles';
+import { SidebarMenu } from "..";
+import useStyles from "./styles";
 
 function Sidebar() {
   const classes = useStyles();
 
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
