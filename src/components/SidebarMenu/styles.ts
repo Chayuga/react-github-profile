@@ -27,6 +27,14 @@ export default makeStyles(() => ({
     color: 'white',
     textDecoration: 'none',
     marginLeft: '2rem',
+    '&:hover': {
+      background: '#0384fc',
+      color: '#000408',
+    },
+    '&:active': {
+      background: '#021173',
+      color: 'white',
+    },
   },
   socialButton: {
     display: 'flex',
