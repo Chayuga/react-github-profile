@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { IReposStateType } from '../../app/types';
-
-const userInitial = {
-  user: 'chayuga',
-} as IReposStateType;
+import { userInitial } from '../search/searchSlice';
 
 // Creating Actions for Repos
 export const fetchReposAction = createAsyncThunk(
