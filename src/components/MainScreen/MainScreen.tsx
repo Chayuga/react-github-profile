@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Profile, NavBar } from '..';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Profile, NavBar, MobileProfile } from '..';
 import { useAppDispatch } from '../../app/store';
 import { ISearchStateType, IToggleStateType } from '../../app/types';
 import { fetchProfileAction } from '../../features/profile/profileSlice';
@@ -12,6 +13,7 @@ interface IChildren {
 
 function MainScreen({ children }: IChildren) {
   const classes = useStyles();
+  const isMobile = useMediaQuery('(max-width:600px)');
 
   // dispatch
   const dispatch = useAppDispatch();
@@ -24,9 +26,10 @@ function MainScreen({ children }: IChildren) {
 
   return (
     <div className={classes.mainScreen}>
-      {toggleOnOff && <Profile /> }
+      {!isMobile && <Profile />}
       <div className={classes.mainScreen__dashboard}>
         <NavBar />
+        {isMobile && <MobileProfile />}
         {children}
       </div>
 

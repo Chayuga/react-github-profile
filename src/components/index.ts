@@ -13,3 +13,4 @@ export { default as Profile } from './Profile/Profile';
 export { default as MainScreen } from './MainScreen/MainScreen';
 export { default as SummerCard } from './MainScreen/SummerCard/SummerCard';
 export { default as RepositoryCard } from './MainScreen/RepositoryCard/RepositoryCard';
+export { default as MobileProfile } from './Profile/MobileProfile';

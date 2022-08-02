@@ -15,7 +15,7 @@ import Badge from '@mui/material/Badge';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import localAvatar from '../assets/images/avatar.png';
-import useStyles from './styles';
+import useStyles from './mobileStyle';
 
 import { fetchProfileAction } from '../../features/profile/profileSlice';
 
@@ -51,7 +51,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-function Profile() {
+function MobileProfile() {
   const classes = useStyles();
 
   const padding = 20;
@@ -70,13 +70,12 @@ function Profile() {
 
   return (
 
-    <div className={classes.profile}>
+    <div>
 
-      <div>
+      <div className={classes.profile}>
         <div key={profile?.id}>
           <Box
             display="flex"
-            flexDirection="column"
             justifyContent="space-around"
             alignItems="center"
           >
@@ -88,7 +87,7 @@ function Profile() {
               <Avatar
                 alt="Profile"
                 src={profile?.avatar_url ? profile?.avatar_url : localAvatar}
-                sx={{ width: 165, height: 165 }}
+                sx={{ width: 100, height: 100 }}
               />
             </StyledBadge>
 
@@ -109,7 +108,7 @@ function Profile() {
               <span style={{ color: '#706e6e' }}>{profile?.bio}</span>
             </div>
           </Box>
-          <Box
+          {/* <Box
             style={{
               margin: '10px 30px',
               display: 'flex',
@@ -196,11 +195,11 @@ function Profile() {
                 </p>
               </div>
             </Box>
-          </Box>
+          </Box> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default Profile;
+export default MobileProfile;
