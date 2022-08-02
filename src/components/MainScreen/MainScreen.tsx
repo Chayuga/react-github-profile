@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Profile, NavBar } from '..';
 import { useAppDispatch } from '../../app/store';
-import { ISearchStateType } from '../../app/types';
+import { ISearchStateType, IToggleStateType } from '../../app/types';
 import { fetchProfileAction } from '../../features/profile/profileSlice';
 import useStyles from './styles';
 
@@ -16,6 +16,7 @@ function MainScreen({ children }: IChildren) {
   // dispatch
   const dispatch = useAppDispatch();
   const user = useSelector((state: ISearchStateType) => state.searches?.user);
+  const toggleOnOff = useSelector((state: IToggleStateType) => state.switchOn?.toggleOn);
 
   useEffect(() => {
     dispatch(fetchProfileAction(user));
@@ -23,8 +24,7 @@ function MainScreen({ children }: IChildren) {
 
   return (
     <div className={classes.mainScreen}>
-
-      <Profile />
+      {toggleOnOff && <Profile /> }
       <div className={classes.mainScreen__dashboard}>
         <NavBar />
         {children}

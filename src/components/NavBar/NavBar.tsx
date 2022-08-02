@@ -6,8 +6,9 @@ import { AppBar, Box, Toolbar, IconButton, InputBase, Badge, MenuItem, Menu } fr
 import { Menu as MenuIcon, Search as SearchIcon, AccountCircle, Mail as MailIcon, Notifications as NotificationsIcon, More as MoreIcon, Logout as LogoutIcon } from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
 import useStyles from './styles';
-import { ISearchStateType } from '../../app/types';
+import { ISearchStateType, IToggleStateType } from '../../app/types';
 import { setSearch } from '../../features/search/searchSlice';
+import { setToggle } from '../../features/toggle/toggleSlice';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -49,12 +50,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const user = useSelector((state: ISearchStateType) => state.searches?.user);
+  const toggleOnOff = useSelector((state: IToggleStateType) => state.switchOn?.toggleOn);
+
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const [isProfileOpen, setIsProfileOpen] = useState<boolean>(true);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -68,11 +73,10 @@ export default function PrimarySearchAppBar() {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
-
   const handleProfileComponent = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-    setIsProfileOpen((prevState) => !prevState);
+    setToggle({ action: !toggleOnOff });
   };
 
   const handleLogut = () => {
@@ -110,7 +114,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleProfileComponent}>{isProfileOpen ? 'Close' : 'Open'} Profile</MenuItem>
+      <MenuItem onClick={handleProfileComponent}>{toggleOnOff ? 'Close' : 'Open'} Profile</MenuItem>
       <MenuItem onClick={handleLogut}>Logout</MenuItem>
     </Menu>
   );
@@ -181,9 +185,6 @@ export default function PrimarySearchAppBar() {
       ) }
     </Menu>
   );
-
-  const user = useSelector((state: ISearchStateType) => state.searches?.user);
-  const dispatch = useDispatch();
 
   return (
     <Box sx={{ flexGrow: 1 }} className={classes.appBarContainer}>

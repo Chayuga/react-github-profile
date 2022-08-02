@@ -42,8 +42,18 @@ export interface ISearchStateType{
   error: unknown;
 }
 
+export interface IToggle {
+  toggleOn: boolean
+}
+
+export interface IToggleStateType {
+  switchOn: {
+    toggleOn: boolean
+  }
+}
 export interface IStoreDataTypes {
   repos: IReposStateType;
   profile: IProfileStateType;
   searches: ISearchStateType;
 }
+
