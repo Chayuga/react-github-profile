@@ -12,6 +12,5 @@ export default makeStyles((theme: Theme) => ({
   },
   mainScreen__dashboard: {
     width: '100%',
-    height: '100vw',
   },
 }));

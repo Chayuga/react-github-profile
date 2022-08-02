@@ -7,6 +7,8 @@ const padding = 20;
 export default makeStyles((theme: Theme) => ({
   container: {
     padding: '40px 10px 10px 10px',
+    position: 'sticky',
+    top: '0',
     [theme.breakpoints.up('sm')]: {
       height: '100vh',
       color: 'inherit',
