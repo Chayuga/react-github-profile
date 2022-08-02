@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -11,7 +11,7 @@ import { Person, ReportGmailerrorred, ShoppingBag, Language, RemoveRedEye, Layer
 import { fetchProfileAction } from '../../features/profile/profileSlice';
 
 import { useAppDispatch } from '../../app/store';
-import { IStoreDataTypes } from '../../app/types';
+import { ISearchStateType, IStoreDataTypes } from '../../app/types';
 
 import useStyles from './styles';
 
@@ -19,10 +19,9 @@ import githubWhite from '../assets/logo/github_white.png';
 
 function SidebarMenu() {
   const classes = useStyles();
-  const [user, setUser] = useState('Chayuga');
-
   // dispatch
   const dispatch = useAppDispatch();
+  const user = useSelector((state: ISearchStateType) => state.searches?.user);
 
   useEffect(() => {
     dispatch(fetchProfileAction(user));
