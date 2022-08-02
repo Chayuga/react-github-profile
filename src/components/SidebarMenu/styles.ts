@@ -4,9 +4,9 @@ const padding = 20;
 
 export default makeStyles(() => ({
   sideBar: {
+    padding: '40px 10px 10px 10px',
     height: '100vh',
     backgroundColor: '#3440e3',
-    padding: '40px 10px 10px 10px',
   },
   imageLink: {
     display: 'flex',
@@ -14,7 +14,7 @@ export default makeStyles(() => ({
     padding: '1.25rem 0',
   },
   image: {
-    width: '50%',
+    width: '100px',
   },
   subHeader: {
     backgroundColor: '#3440e3 !important',

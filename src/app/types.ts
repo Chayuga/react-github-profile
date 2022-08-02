@@ -13,6 +13,7 @@ export interface IProfile {
   stargazers_count: number;
   open_issues_count: number;
   forks_count: number;
+  subscriptions_url: string;
 }
 
 export interface IRepo {

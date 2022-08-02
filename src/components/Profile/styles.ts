@@ -5,7 +5,7 @@ const profileWidth = 280;
 const padding = 20;
 
 export default makeStyles((theme: Theme) => ({
-  profile: {
+  container: {
     padding: '40px 10px 10px 10px',
     [theme.breakpoints.up('sm')]: {
       height: '100vh',
@@ -14,6 +14,13 @@ export default makeStyles((theme: Theme) => ({
       flexShrink: 0,
       boxShadow: '0 0 15px rgba(0,0,0,0.25)',
     },
+  },
+
+  profile: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   socialButton: {
     display: 'flex',
@@ -56,17 +63,18 @@ export default makeStyles((theme: Theme) => ({
     marginTop: padding,
     borderStyle: 'solid',
     color: 'primary',
-    borderRadius: '50px',
+    borderRadius: '100px',
   },
 
   socialMenuButton_link: {
     textDecoration: 'none',
     color: 'blue',
+    borderRadius: '50px',
   },
 
   socialMenuItem: {
     color: 'blue',
-    fontSize: 'medium',
+    fontSize: 'small',
   },
   socialButton_count: {
     marginLeft: '20',

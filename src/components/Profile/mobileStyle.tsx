@@ -1,13 +1,18 @@
 import { makeStyles } from '@mui/styles';
 
-const profileWidth = 280;
 const padding = 20;
 
 export default makeStyles(() => ({
-  profile: {
-    display: 'flex',
+  container: {
     padding: '0 10px',
   },
+
+  profile: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+
   socialButton: {
     display: 'flex',
     alignItems: 'center',
@@ -49,17 +54,18 @@ export default makeStyles(() => ({
     marginTop: padding,
     borderStyle: 'solid',
     color: 'primary',
-    borderRadius: '50px',
+    borderRadius: '100px',
   },
 
   socialMenuButton_link: {
     textDecoration: 'none',
     color: 'blue',
+    borderRadius: '50px',
   },
 
   socialMenuItem: {
     color: 'blue',
-    fontSize: 'medium',
+    fontSize: 'small',
   },
   socialButton_count: {
     marginLeft: '20',

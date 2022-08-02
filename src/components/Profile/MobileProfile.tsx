@@ -1,21 +1,12 @@
 import { Avatar, Box, Button } from '@mui/material';
 
-import {
-  Place,
-  Facebook,
-  Layers,
-  StarRate,
-  People,
-  Person,
-} from '@mui/icons-material';
-
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import localAvatar from '../assets/images/avatar.png';
-import useStyles from './mobileStyle';
+import useStyles from './styles';
 
 import { fetchProfileAction } from '../../features/profile/profileSlice';
 
@@ -51,9 +42,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-function MobileProfile() {
+function Profile() {
   const classes = useStyles();
-
   const padding = 20;
 
   // dispatch
@@ -70,136 +60,52 @@ function MobileProfile() {
 
   return (
 
-    <div>
+    <div className={classes.container}>
 
-      <div className={classes.profile}>
-        <div key={profile?.id}>
-          <Box
-            display="flex"
-            justifyContent="space-around"
-            alignItems="center"
-          >
-            <StyledBadge
-              overlap="circular"
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              variant="dot"
-            >
-              <Avatar
-                alt="Profile"
-                src={profile?.avatar_url ? profile?.avatar_url : localAvatar}
-                sx={{ width: 100, height: 100 }}
-              />
-            </StyledBadge>
+      <Box className={classes.profile}>
+        <StyledBadge
+          overlap="circular"
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+          variant="dot"
+        >
+          <Avatar
+            alt="Profile"
+            src={profile?.avatar_url ? profile?.avatar_url : localAvatar}
+            sx={{ width: 100, height: 100 }}
+          />
+        </StyledBadge>
 
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                textAlign: 'center',
-                paddingTop: padding,
-              }}
-            >
-              {profile?.name}
-              <span style={{ color: '#706e6e' }}>&#64;{profile?.login}</span>
-            </div>
-
-            <div style={{ textAlign: 'center', paddingTop: padding }}>
-              <span style={{ color: '#706e6e' }}>{profile?.bio}</span>
-            </div>
-          </Box>
-          {/* <Box
-            style={{
-              margin: '10px 30px',
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <Box style={{ paddingTop: padding }}>
-              <div className={classes.socialButton}>
-                <Facebook style={{ color: 'blue', fontSize: 'medium' }} />
-                <Button
-                  href=""
-                  target="_blank"
-                  style={{ color: 'rgba(0,0,0,0.8)' }}
-                >
-                  Facebook
-                </Button>
-              </div>
-              <div className={classes.socialButton}>
-                <Place style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>{profile?.location}</p>
-              </div>
-            </Box>
-            <Button
-              variant="outlined"
-              style={{
-                marginTop: padding,
-                borderStyle: 'solid',
-                color: 'primary',
-                borderRadius: '50px',
-              }}
-            >
-              <a
-                href={profile?.html_url}
-                target="_blank"
-                style={{ textDecoration: 'none', color: 'blue' }}
-                rel="noreferrer"
-              >
-                Follow
-              </a>
-            </Button>
-            <Box
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                paddingTop: padding,
-              }}
-            >
-              <div className={classes.socialButton}>
-                <Layers style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>
-                  Repositories{' '}
-                  <span className={classes.socialButton_count}>
-                    {profile?.public_repos ? profile?.public_repos : 'N/A'}
-                  </span>
-                </p>
-              </div>
-              <div className={classes.socialButton}>
-                <StarRate style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>
-                  Stars{' '}
-                  <span className={classes.socialButton_count}>
-                    {profile?.stargazers_count
-                      ? profile?.stargazers_count
-                      : '0'}
-                  </span>
-                </p>
-              </div>
-              <div className={classes.socialButton}>
-                <People style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>
-                  Follower{' '}
-                  <span className={classes.socialButton_count}>
-                    {profile?.followers ? profile?.followers : '0'}
-                  </span>
-                </p>
-              </div>
-              <div className={classes.socialButton}>
-                <Person style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>
-                  Following{' '}
-                  <span className={classes.socialButton_count}>
-                    {profile?.following ? profile?.following : '0'}
-                  </span>
-                </p>
-              </div>
-            </Box>
-          </Box> */}
+        <div
+          className={classes.profileName}
+        >
+          {profile?.name}
+          <span className={classes.profileName_loginUser}>&#64;{profile?.login}</span>
         </div>
-      </div>
+
+        <div className={classes.profileBio}>
+          {profile?.bio}
+        </div>
+        <Button
+          variant="outlined"
+          className={classes.socialMenuButton}
+          style={{ marginTop: padding,
+            borderStyle: 'solid',
+            color: 'primary',
+            borderRadius: '100px' }}
+        >
+          <a
+            href={profile?.html_url}
+            target="_blank"
+            className={classes.socialMenuButton_link}
+            rel="noreferrer"
+          >
+            Follow
+          </a>
+        </Button>
+      </Box>
+
     </div>
   );
 }
 
-export default MobileProfile;
+export default Profile;

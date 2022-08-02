@@ -24,3 +24,6 @@ yarn-error.log*
 .eslintrc.js
 .prettierignore
 
+# dev profile image
+/src/components/assets/images/avatar.jpg
+

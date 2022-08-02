@@ -2,7 +2,7 @@ import { Avatar, Box, Button } from '@mui/material';
 
 import {
   Place,
-  Facebook,
+  Apartment,
   Layers,
   StarRate,
   People,
@@ -53,7 +53,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 function Profile() {
   const classes = useStyles();
-
   const padding = 20;
 
   // dispatch
@@ -70,134 +69,105 @@ function Profile() {
 
   return (
 
-    <div className={classes.profile}>
-
+    <div className={classes.container}>
       <div>
-        <div key={profile?.id}>
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-around"
-            alignItems="center"
+        <Box className={classes.profile}>
+          <StyledBadge
+            overlap="circular"
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            variant="dot"
           >
-            <StyledBadge
-              overlap="circular"
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              variant="dot"
-            >
-              <Avatar
-                alt="Profile"
-                src={profile?.avatar_url ? profile?.avatar_url : localAvatar}
-                sx={{ width: 165, height: 165 }}
-              />
-            </StyledBadge>
+            <Avatar
+              alt="Profile"
+              src={profile?.avatar_url ? profile?.avatar_url : localAvatar}
+              sx={{ width: 165, height: 165 }}
+            />
+          </StyledBadge>
 
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                textAlign: 'center',
-                paddingTop: padding,
-              }}
-            >
-              {profile?.name}
-              <span style={{ color: '#706e6e' }}>&#64;{profile?.login}</span>
+          <div
+            className={classes.profileName}
+          >
+            {profile?.name}
+            <span className={classes.profileName_loginUser}>&#64;{profile?.login}</span>
+          </div>
+
+          <div className={classes.profileBio}>
+            {profile?.bio}
+          </div>
+        </Box>
+        <Box
+          className={classes.socialGroup}
+        >
+          <Box className={classes.socialGroupMenus}>
+            <div className={classes.socialButton}>
+              <Apartment className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>{profile?.company}</p>
             </div>
-
-            <div style={{ textAlign: 'center', paddingTop: padding }}>
-              <span style={{ color: '#706e6e' }}>{profile?.bio}</span>
+            <div className={classes.socialButton}>
+              <Place className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>{profile?.location}</p>
             </div>
           </Box>
-          <Box
-            style={{
-              margin: '10px 30px',
-              display: 'flex',
-              flexDirection: 'column',
-            }}
+          <Button
+            variant="outlined"
+            className={classes.socialMenuButton}
+            style={{ marginTop: padding,
+              borderStyle: 'solid',
+              color: 'primary',
+              borderRadius: '100px' }}
           >
-            <Box style={{ paddingTop: padding }}>
-              <div className={classes.socialButton}>
-                <Facebook style={{ color: 'blue', fontSize: 'medium' }} />
-                <Button
-                  href=""
-                  target="_blank"
-                  style={{ color: 'rgba(0,0,0,0.8)' }}
-                >
-                  Facebook
-                </Button>
-              </div>
-              <div className={classes.socialButton}>
-                <Place style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>{profile?.location}</p>
-              </div>
-            </Box>
-            <Button
-              variant="outlined"
-              style={{
-                marginTop: padding,
-                borderStyle: 'solid',
-                color: 'primary',
-                borderRadius: '50px',
-              }}
+            <a
+              href={profile?.html_url}
+              target="_blank"
+              className={classes.socialMenuButton_link}
+              rel="noreferrer"
             >
-              <a
-                href={profile?.html_url}
-                target="_blank"
-                style={{ textDecoration: 'none', color: 'blue' }}
-                rel="noreferrer"
-              >
-                Follow
-              </a>
-            </Button>
-            <Box
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                paddingTop: padding,
-              }}
-            >
-              <div className={classes.socialButton}>
-                <Layers style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>
-                  Repositories{' '}
-                  <span className={classes.socialButton_count}>
-                    {profile?.public_repos ? profile?.public_repos : 'N/A'}
-                  </span>
-                </p>
-              </div>
-              <div className={classes.socialButton}>
-                <StarRate style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>
-                  Stars{' '}
-                  <span className={classes.socialButton_count}>
-                    {profile?.stargazers_count
-                      ? profile?.stargazers_count
-                      : '0'}
-                  </span>
-                </p>
-              </div>
-              <div className={classes.socialButton}>
-                <People style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>
-                  Follower{' '}
-                  <span className={classes.socialButton_count}>
-                    {profile?.followers ? profile?.followers : '0'}
-                  </span>
-                </p>
-              </div>
-              <div className={classes.socialButton}>
-                <Person style={{ color: 'blue', fontSize: 'medium' }} />
-                <p style={{ marginLeft: '10px' }}>
-                  Following{' '}
-                  <span className={classes.socialButton_count}>
-                    {profile?.following ? profile?.following : '0'}
-                  </span>
-                </p>
-              </div>
-            </Box>
+              Follow
+            </a>
+          </Button>
+          <Box
+            className={classes.socialGroupMenus}
+          >
+            <div className={classes.socialButton}>
+              <Layers className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
+                Repositories{' '}
+                <span className={classes.socialButton_count}>
+                  {profile?.public_repos ? profile?.public_repos : 'N/A'}
+                </span>
+              </p>
+            </div>
+            <div className={classes.socialButton}>
+              <StarRate className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
+                Stars{' '}
+                <span className={classes.socialButton_count}>
+                  {profile?.stargazers_count
+                    ? profile?.stargazers_count
+                    : '0'}
+                </span>
+              </p>
+            </div>
+            <div className={classes.socialButton}>
+              <People className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
+                Follower{' '}
+                <span className={classes.socialButton_count}>
+                  {profile?.followers ? profile?.followers : '0'}
+                </span>
+              </p>
+            </div>
+            <div className={classes.socialButton}>
+              <Person className={classes.socialMenuItem} />
+              <p className={classes.socialButton_span}>
+                Following{' '}
+                <span className={classes.socialButton_count}>
+                  {profile?.following ? profile?.following : '0'}
+                </span>
+              </p>
+            </div>
           </Box>
-        </div>
+        </Box>
       </div>
     </div>
   );
