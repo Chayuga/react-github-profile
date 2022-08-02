@@ -1,13 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import { Star, SwapCalls } from '@mui/icons-material';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { fetchReposAction } from '../../../features/repos/reposSlices';
 
 import { useAppDispatch } from '../../../app/store';
-import { IRepo, IStoreDataTypes } from '../../../app/types';
+import { IRepo, ISearchStateType, IStoreDataTypes } from '../../../app/types';
 
 import useStyles from './styles';
 
@@ -47,7 +47,7 @@ function Card({ title, body, starCount, routeCount }: IRepositoryCard) {
 }
 function RepositoryCard({ heading }: IHeading) {
   const classes = useStyles();
-  const [user, setUser] = useState('Chayuga');
+  const user = useSelector((state: ISearchStateType) => state.searches?.user);
   // dispatch
   const dispatch = useAppDispatch();
 
@@ -65,6 +65,7 @@ function RepositoryCard({ heading }: IHeading) {
         {repos
           && repos.map((repo: IRepo) => (
             <Card
+              key={repo.id}
               title={repo?.name}
               body={
                 repo?.description

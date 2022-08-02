@@ -1,14 +1,10 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { IProfileStateType } from "../../app/types";
-
-const userInitial = {
-  user: "Chayuga",
-} as IProfileStateType;
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { userInitial } from '../search/searchSlice';
 
 // Creating Actions for Repos
 export const fetchProfileAction = createAsyncThunk(
-  "profile/list",
+  'profile/list',
   async (user: string, { rejectWithValue }) => {
     try {
       // make http call.
@@ -20,12 +16,12 @@ export const fetchProfileAction = createAsyncThunk(
       }
       return rejectWithValue(error instanceof Error && error?.message);
     }
-  }
+  },
 );
 
 // slice for Profile
 const profileSlices = createSlice({
-  name: "profile",
+  name: 'profile',
   initialState: userInitial,
   reducers: {},
   extraReducers: (builder) => {

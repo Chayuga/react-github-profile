@@ -1,4 +1,5 @@
 export interface IProfile {
+  id: number;
   avatar_url: string;
   name: string;
   login: string;
@@ -15,6 +16,7 @@ export interface IProfile {
 }
 
 export interface IRepo {
+  id: number;
   description: string;
   name: string;
   stargazers_count: number;
@@ -34,7 +36,14 @@ export interface IReposStateType {
   error: unknown;
 }
 
+export interface ISearchStateType{
+  loading: boolean;
+  searches: IProfileStateType;
+  error: unknown;
+}
+
 export interface IStoreDataTypes {
   repos: IReposStateType;
   profile: IProfileStateType;
+  searches: ISearchStateType;
 }
