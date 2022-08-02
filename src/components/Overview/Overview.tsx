@@ -1,6 +1,6 @@
-import React from "react";
-import { SummerCard, RepositoryCard } from "..";
-import useStyles from "./styles";
+import React from 'react';
+import { SummerCard, RepositoryCard } from '..';
+import useStyles from './styles';
 
 function Overview() {
   const classes = useStyles();

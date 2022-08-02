@@ -1,15 +1,15 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 
 // import { useSelector } from 'react-redux';
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import { fetchProfileAction } from "../../../features/profile/profileSlice";
+import { fetchProfileAction } from '../../../features/profile/profileSlice';
 
-import { useAppDispatch } from "../../../app/store";
-import { IStoreDataTypes } from "../../../app/types";
+import { useAppDispatch } from '../../../app/store';
+import { ISearchStateType, IStoreDataTypes } from '../../../app/types';
 
-import useStyles from "./styles";
+import useStyles from './styles';
 
 interface ISummery {
   title: string;
@@ -20,15 +20,15 @@ function Card({ title, countNumber }: ISummery) {
   const classes = useStyles();
   return (
     <Box className={classes.card}>
-      <Typography sx={{ fontSize: "0.8rem" }}>{title}</Typography>
-      <Typography sx={{ fontSize: "1.5rem" }}>{countNumber}</Typography>
+      <Typography sx={{ fontSize: '0.8rem' }}>{title}</Typography>
+      <Typography sx={{ fontSize: '1.5rem' }}>{countNumber}</Typography>
     </Box>
   );
 }
 
 function SummerCard() {
   const classes = useStyles();
-  const [user, setUser] = useState("Chayuga");
+  const user = useSelector((state: ISearchStateType) => state.searches?.user);
 
   // dispatch
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ function SummerCard() {
   const { profile } = store;
 
   return (
-    <div className={classes.summeryCard}>
+    <div className={classes.summeryCard} key={profile?.id}>
       <Card
         title="Pull Requests"
         countNumber={

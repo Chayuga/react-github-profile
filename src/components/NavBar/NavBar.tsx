@@ -1,10 +1,13 @@
-import * as React from 'react';
+
+import { useState } from 'react';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { AppBar, Box, Toolbar, IconButton, InputBase, Badge, MenuItem, Menu } from '@mui/material';
 import { Menu as MenuIcon, Search as SearchIcon, AccountCircle, Mail as MailIcon, Notifications as NotificationsIcon, More as MoreIcon, Logout as LogoutIcon } from '@mui/icons-material';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import useStyles from './styles';
+import { ISearchStateType } from '../../app/types';
+import { setSearch } from '../../features/search/searchSlice';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -46,8 +49,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -179,6 +182,9 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
+  const user = useSelector((state: ISearchStateType) => state.searches?.user);
+  const dispatch = useDispatch();
+
   return (
     <Box sx={{ flexGrow: 1 }} className={classes.appBarContainer}>
       <AppBar
@@ -208,7 +214,9 @@ export default function PrimarySearchAppBar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              onChange={(e) => dispatch(setSearch(e.target.value))}
               placeholder="Search GitHub…"
+              value={user}
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
