@@ -47,9 +47,7 @@ export interface IToggle {
 }
 
 export interface IToggleStateType {
-  switchOn: {
-    toggleOn: boolean
-  }
+  switchOn: IToggle
 }
 export interface IStoreDataTypes {
   repos: IReposStateType;
