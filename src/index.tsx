@@ -3,17 +3,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 
 import App from './components/App';
 import store from './app/store';
 
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
-
 const theme = createTheme({});
 
-root.render(
+ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
@@ -21,4 +18,5 @@ root.render(
       </BrowserRouter>
     </ThemeProvider>
   </Provider>,
+  document.getElementById('root'),
 );
