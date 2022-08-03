@@ -1,18 +1,31 @@
 import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles';
 
+const profileWidth = 280;
 const padding = 20;
 
-export default makeStyles(() => ({
+export default makeStyles((theme: Theme) => ({
   container: {
-    padding: '0 10px',
+    padding: '35px 10px 10px 10px',
+    backgroundColor: '#f7f7f7',
+    position: 'sticky',
+    marginTop: '60px',
+    top: '50px',
+    [theme.breakpoints.up('sm')]: {
+      height: '100vh',
+      color: 'inherit',
+      width: profileWidth,
+      flexShrink: 0,
+      boxShadow: '0 0 15px rgba(0,0,0,0.25)',
+    },
   },
 
   profile: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-
   socialButton: {
     display: 'flex',
     alignItems: 'center',

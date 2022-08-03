@@ -6,7 +6,7 @@ import Badge from '@mui/material/Badge';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import localAvatar from '../assets/images/avatar.png';
-import useStyles from './styles';
+import useStyles from './mobileStyle';
 
 import { fetchProfileAction } from '../../features/profile/profileSlice';
 

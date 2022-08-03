@@ -91,8 +91,8 @@ export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
 
-  const notificationCount = 23;
-  const mailCount = 14;
+  const notificationCount = 0;
+  const mailCount = 0;
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
