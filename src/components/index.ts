@@ -11,6 +11,6 @@ export { default as Sidebar } from './Sidebar/Sidebar';
 export { default as SidebarMenu } from './SidebarMenu/SidebarMenu';
 export { default as Profile } from './Profile/Profile';
 export { default as MainScreen } from './MainScreen/MainScreen';
-export { default as SummerCard } from './MainScreen/SummerCard/SummerCard';
-export { default as RepositoryCard } from './MainScreen/RepositoryCard/RepositoryCard';
+export { default as SummerCard } from './SummerCard/SummerCard';
+export { default as RepositoryCard } from './RepositoryCard/RepositoryCard';
 export { default as MobileProfile } from './Profile/MobileProfile';
