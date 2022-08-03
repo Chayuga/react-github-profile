@@ -101,7 +101,7 @@ function Profile() {
           <Box className={classes.socialGroupMenus}>
             <div className={classes.socialButton}>
               <Apartment className={classes.socialMenuItem} />
-              <p className={classes.socialButton_span}>{profile?.company}</p>
+              <p className={classes.socialButton_span}>{profile?.company ? profile?.company : 'No work information'}</p>
             </div>
             <div className={classes.socialButton}>
               <Place className={classes.socialMenuItem} />
