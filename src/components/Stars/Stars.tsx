@@ -1,7 +1,6 @@
-import React from "react";
 
 function Stars() {
-  return <div>Stars</div>;
+  return <h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Stars</h3>;
 }
 
 export default Stars;

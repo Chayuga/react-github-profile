@@ -1,7 +1,6 @@
-import React from "react";
 
 function PullRequest() {
-  return <div>PullRequest</div>;
+  return <h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>PullRequest</h3>;
 }
 
 export default PullRequest;

@@ -22,7 +22,7 @@ function MainScreen({ children }: IChildren) {
 
   useEffect(() => {
     dispatch(fetchProfileAction(user));
-  }, [dispatch]);
+  }, [user]);
 
   return (
     <div className={classes.mainScreen}>

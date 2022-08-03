@@ -1,7 +1,6 @@
-import React from "react";
 
 function Issues() {
-  return <div>Issues</div>;
+  return <h3 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Issues</h3>;
 }
 
 export default Issues;
