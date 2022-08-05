@@ -210,7 +210,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           )}
-          <Search>
+          <Search sx={{ borderStyle: 'solid', borderColor: '#e0e0e0' }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
