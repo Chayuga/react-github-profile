@@ -10,6 +10,7 @@ import { useAppDispatch } from '../../app/store';
 import { IRepo, ISearchStateType, IStoreDataTypes } from '../../app/types';
 
 import useStyles from './styles';
+import { fetchProfileAction } from '../../features/profile/profileSlice';
 
 interface IRepositoryCard {
   title: string | undefined;
@@ -24,6 +25,7 @@ interface IHeading {
 
 function Card({ title, body, starCount, routeCount }: IRepositoryCard) {
   const classes = useStyles();
+
   return (
     <Box>
       <Box className={classes.card}>
@@ -47,17 +49,22 @@ function Card({ title, body, starCount, routeCount }: IRepositoryCard) {
 }
 function RepositoryCard({ heading }: IHeading) {
   const classes = useStyles();
-  const user = useSelector((state: ISearchStateType) => state.searches?.user);
+
   // dispatch
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchReposAction(user));
-  }, [dispatch]);
-
   const store = useSelector((state: IStoreDataTypes) => state?.repos);
+  const userProfile = useSelector((state: IStoreDataTypes) => state?.profile);
+  const user = useSelector((state: ISearchStateType) => state.searches?.user);
 
   const { repos } = store;
+  const { profile } = userProfile;
+
+  useEffect(() => {
+    dispatch(fetchProfileAction(user));
+    dispatch(fetchReposAction(user));
+  }, [profile]);
+
   return (
     <Box className={classes.repositoryContainer}>
       <Typography className={classes.sectionHeader}>{heading}</Typography>
