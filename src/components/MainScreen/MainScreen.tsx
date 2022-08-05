@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Profile, NavBar, MobileProfile } from '..';
 import { useAppDispatch } from '../../app/store';
-import { ISearchStateType, IToggleStateType } from '../../app/types';
+import { ISearchStateType } from '../../app/types';
 import { fetchProfileAction } from '../../features/profile/profileSlice';
 import useStyles from './styles';
 
@@ -18,7 +18,6 @@ function MainScreen({ children }: IChildren) {
   // dispatch
   const dispatch = useAppDispatch();
   const user = useSelector((state: ISearchStateType) => state.searches?.user);
-  const toggleOnOff = useSelector((state: IToggleStateType) => state.switchOn?.toggleOn);
 
   useEffect(() => {
     dispatch(fetchProfileAction(user));

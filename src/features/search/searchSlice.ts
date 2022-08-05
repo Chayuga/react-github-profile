@@ -15,7 +15,7 @@ export const searchSlices = createSlice({
       state.user = action.payload;
     },
     clearSearch: (state) => {
-      state.user = '';
+      state.user = 'chayuga';
     },
   },
 });
