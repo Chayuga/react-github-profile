@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IProfileStateType, IReposStateType } from '../../app/types';
 
 export const userInitial = {
-  user: 'chayuga',
+  user: '',
 } as IReposStateType | IProfileStateType;
 
 // Creating slice for Search
