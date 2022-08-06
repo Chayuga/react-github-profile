@@ -3,14 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import useStyles from './styles';
 import {
-  PullRequests,
-  Issues,
-  Market,
-  Explore,
+  Page404,
   Overview,
-  Repositories,
-  Stars,
-  Followers,
   MainScreen,
   Sidebar,
 } from '.';
@@ -26,14 +20,14 @@ function App() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Routes>
-            <Route path="/pull-request" element={<PullRequests />} />
-            <Route path="/issues" element={<Issues />} />
-            <Route path="/market" element={<Market />} />
-            <Route path="/explore" element={<Explore />} />
+            <Route path="/pull-request" element={<Page404 page="Pull request Page" textColor="#f54242" />} />
+            <Route path="/issues" element={<Page404 page="Issues Page" textColor="#29d6ae" />} />
+            <Route path="/market" element={<Page404 page="Market Page" textColor="#035efc" />} />
+            <Route path="/explore" element={<Page404 page="Explore Page" textColor="#a86522" />} />
             <Route path="/" element={<Overview />} />
-            <Route path="/repositories" element={<Repositories />} />
-            <Route path="/stars" element={<Stars />} />
-            <Route path="/followers" element={<Followers />} />
+            <Route path="/repositories" element={<Page404 page="Repository Page" textColor="#631313" />} />
+            <Route path="/stars" element={<Page404 page="Stars Page" textColor="#f0c105" />} />
+            <Route path="/followers" element={<Page404 page="Followers Page" textColor="#02de18" />} />
           </Routes>
         </main>
       </MainScreen>

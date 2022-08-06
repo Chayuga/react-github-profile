@@ -1,12 +1,5 @@
-export { default as NavBar } from './NavBar/NavBar';
-export { default as PullRequests } from './PullRequests/PullRequests';
-export { default as Issues } from './Issues/Issues';
-export { default as Market } from './Market/Market';
-export { default as Explore } from './Explore/Explore';
 export { default as Overview } from './Overview/Overview';
-export { default as Repositories } from './Repositories/Repositories';
-export { default as Stars } from './Stars/Stars';
-export { default as Followers } from './Followers/Followers';
+export { default as NavBar } from './NavBar/NavBar';
 export { default as Sidebar } from './Sidebar/Sidebar';
 export { default as SidebarMenu } from './SidebarMenu/SidebarMenu';
 export { default as Profile } from './Profile/Profile';
@@ -14,3 +7,4 @@ export { default as MainScreen } from './MainScreen/MainScreen';
 export { default as SummerCard } from './SummerCard/SummerCard';
 export { default as RepositoryCard } from './RepositoryCard/RepositoryCard';
 export { default as MobileProfile } from './Profile/MobileProfile';
+export { default as Page404 } from './Page404/Page404';
