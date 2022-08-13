@@ -69,8 +69,8 @@ function RepositoryCard({ heading }: IHeading) {
     <Box className={classes.repositoryContainer}>
       <Typography className={classes.sectionHeader}>{heading}</Typography>
       <Box className={classes.repositoryCard}>
-        {repos
-          && repos.map((repo: IRepo) => (
+        {repos &&
+          repos.map((repo: IRepo) => (
             <Card
               key={repo.id}
               title={repo?.name}
