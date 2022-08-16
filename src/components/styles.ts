@@ -4,6 +4,7 @@ export default makeStyles(() => ({
   root: {
     display: 'flex',
     height: '100%',
+    background: '#f7f7f7',
   },
 
   content: {
@@ -14,5 +15,4 @@ export default makeStyles(() => ({
   toolbar: {
     height: '70px',
   },
-
 }));
